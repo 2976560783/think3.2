@@ -1,0 +1,87 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户使用</title>
+    <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("tr.formInsert").css('display', 'none');
+            $("#insert").click(function () {
+                $("tr.formInsert").toggle();
+            });
+            $("#insertSubmit").click(function () {
+                //var name=document.getElementById("name").value;
+                $.ajax({
+                    url: "/think3.2/index.php?s=/Home/Index/insert",
+                    data: {
+                        table: "user_info",
+                        name: document.getElementById("nameInsert").value,
+                        phone: document.getElementById("phoneInsert").value,
+                        user_number: document.getElementById("user_numberInsert").value,
+                        book_room: document.getElementById("book_roomInsert").value,
+                        in_date: document.getElementById('in_dateInsert').value,
+                        out_date: document.getElementById('out_dateInsert').value
+                    },
+                    type: "POST",
+                    datatype: "JSON",
+                    success: function (result) {
+                        $("#show").html(result);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<p>欢迎来到hotel</p>
+<table>
+    <tr>
+        <td>可用房间</td>
+        <td>价格</td>
+    </tr>
+    <?php if(is_array($data2)): $i = 0; $__LIST__ = $data2;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
+            <td><?php echo ($v["number"]); ?></td>
+            <td><?php echo ($v["price"]); ?></td>
+        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+</table>
+
+<table>
+
+
+    <tr>
+        <td>
+            <button id="insert">顾客登记信息</button>
+        </td>
+    </tr>
+    <tr class="formInsert">
+        <td>用户数据输入</td>
+    </tr>
+    <tr class="formInsert">
+        <td>姓名</td>
+        <td>电话号码</td>
+        <td>身份证号码</td>
+        <td>预订房间号</td>
+        <td>入住时间</td>
+        <td>离开时间</td>
+    </tr>
+    <tr class="formInsert">
+        <td><input type="text" id="nameInsert"></td>
+        <td><input type="tel" id="phoneInsert"></td>
+        <td><input type="text" id="user_numberInsert"></td>
+        <td><input type="text" id="book_roomInsert"></td>
+        <td><input type="date" id="in_dateInsert"></td>
+        <td><input type="date" id="out_dateInsert"></td>
+        <td>
+            <button id="insertSubmit">提交</button>
+        </td>
+    </tr>
+
+
+</table>
+
+<div id="show" style="position: absolute;left:400px;top:200px"></div>
+
+</body>
+</html>

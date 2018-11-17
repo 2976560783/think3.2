@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#delete").click(function(){
+                $.ajax({
+                    url:"__CONTROLLER__/delete",
+                    data:{
+                        table:"room_state",
+                        room:$.trim($("#room").text())
+                    },
+                    datatype:"JSON",
+                    type:"POST",
+                    success:function(result){
+                        $("#show").html(result);
+                    }
+
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>房间</td>
+        <td>状态是否为空</td>
+    </tr>
+    <volist name="data" id="v">
+        <tr>
+            <td id="room">{$v.room}</td>
+            <td>{$v.empty}</td>
+            <td><button id="update">修改</button></td>
+            <td><button id="delete">删除</button></td>
+        </tr>
+    </volist>
+</table>
+
+
+</body>
+</html>

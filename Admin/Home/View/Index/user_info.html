@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js">
+    </script>
+    <script>
+        function deleteId(id){
+            $.ajax({
+                url:"__CONTROLLER__/delete",
+                data:{
+                    table:"user_info",
+                    id:id
+                },
+                datatype:"JSON",
+                type:"POST",
+                success:function(result){
+                    $("#show").html(result);
+                }
+
+            })
+        }
+        function updateId(id) {
+
+        }
+
+        $("tr.updateForm").css('display','none');
+        $("button.update").click(function () {
+            $("tr.updateForm").toggle(1000);
+        })
+    </script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>电话号码</td>
+        <td>身份证号码</td>
+        <td>预定的房间号</td>
+        <td>入住日期</td>
+        <td>离开日期</td>
+    </tr>
+    <volist name="data" id="v">
+        <tr>
+            <td>{$v.name}</td>
+            <td>{$v.phone}</td>
+            <td>{$v.user_number}</td>
+            <td>{$v.book_room}</td>
+            <td>{$v.in_date}</td>
+            <td>{$v.out_date}</td>
+            <td>
+                <button onclick="updateId({$v.id})" class="update">修改</button>
+            </td>
+            <td>
+                <button onclick="deleteId({$v.id})">删除</button>
+            </td>
+        </tr>
+        <tr class="updateForm">
+            <td><input type="text"> </td>
+            <td>电话号码</td>
+            <td>身份证号码</td>
+            <td>预定的房间号</td>
+            <td>入住日期</td>
+            <td>离开日期</td>
+        </tr>
+    </volist>
+
+
+
+</table>
+
+
+
+
+</body>
+</html>
