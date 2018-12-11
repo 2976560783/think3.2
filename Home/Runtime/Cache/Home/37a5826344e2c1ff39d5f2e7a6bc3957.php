@@ -68,7 +68,7 @@
     </tr>
     <tr class="formInsert">
         <td><input type="text" id="nameInsert"></td>
-        <td><input type="tel" id="phoneInsert"></td>
+        <td><input type="text" id="phoneInsert"></td>
         <td><input type="text" id="user_numberInsert"></td>
         <td><input type="text" id="book_roomInsert"></td>
         <td><input type="date" id="in_dateInsert"></td>

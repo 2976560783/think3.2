@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+    <script>
+        function change(id) {
+            $.ajax({
+                url:"__CONTROLLER__/change",
+                data:{
+                    id:id
+                },
+                type:"POST",
+                datatype:"JSON",
+                success:function (result) {
+                    $("#show").html(result);
+                }
+            })
+        }
+    </script>
 </head>
 <body>
 <table>
@@ -23,6 +38,7 @@
             <td>{$v.book_room}</td>
             <td>{$v.in_date}</td>
             <td>{$v.out_date}</td>
+            <td><button onclick="change({$v.id})">确认结账，修改房间信息</button> </td>
         </tr>
     </volist>
     <tr>

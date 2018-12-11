@@ -75,13 +75,15 @@
         <td>价格</td>
         <td>房间状态</td>
         <td><button id="create">添加</button></td>
+        <td><button class="update">修改</button></td>
     </tr>
+    <tr><td>修改时根据房间号来定</td></tr>
     <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
             <td><?php echo ($v["class"]); ?></td>
             <td><?php echo ($v["number"]); ?></td>
             <td><?php echo ($v["price"]); ?></td>
             <td><?php echo ($v["state"]); ?></td>
-            <td><button class="update">修改</button></td>
+
             <td><button onclick="deleteRoom(<?php echo ($v["id"]); ?>)">删除</button></td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     <tr>

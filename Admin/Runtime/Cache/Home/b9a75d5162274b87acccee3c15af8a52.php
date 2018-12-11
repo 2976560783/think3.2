@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+    <script>
+        function change(id) {
+            $.ajax({
+                url:"/think3.2/admin.php?s=/Home/Index/change",
+                data:{
+                    id:id
+                },
+                type:"POST",
+                datatype:"JSON",
+                success:function (result) {
+                    $("#show").html(result);
+                }
+            })
+        }
+    </script>
 </head>
 <body>
 <table>
@@ -22,6 +37,7 @@
             <td><?php echo ($v["book_room"]); ?></td>
             <td><?php echo ($v["in_date"]); ?></td>
             <td><?php echo ($v["out_date"]); ?></td>
+            <td><button onclick="change(<?php echo ($v["id"]); ?>)">确认结账，修改房间信息</button> </td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     <tr>
         <td>顾客支付费用</td>

@@ -75,14 +75,16 @@
         <td>价格</td>
         <td>房间状态</td>
         <td><button id="create">添加</button></td>
+        <td><button class="update">修改</button></td>
     </tr>
+    <tr><td>修改时根据房间号来定</td></tr>
     <volist name="data" id="v">
         <tr>
             <td>{$v.class}</td>
             <td>{$v.number}</td>
             <td>{$v.price}</td>
             <td>{$v.state}</td>
-            <td><button class="update">修改</button></td>
+
             <td><button onclick="deleteRoom({$v.id})">删除</button></td>
         </tr>
     </volist>

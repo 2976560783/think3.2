@@ -26,6 +26,7 @@ class IndexController extends Controller {
         $table = I('post.table');
         $table = M($table);
         $data['name'] = I('post.name');
+        echo '你好，欢迎使用本系统登记信息，请按照如下的花费显示付款';
         $data['phone'] = I('post.phone');
         $data['user_number'] = I('post.user_number');
         $data['book_room'] = I('post.book_room');

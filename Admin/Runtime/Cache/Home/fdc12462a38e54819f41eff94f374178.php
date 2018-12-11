@@ -31,12 +31,11 @@
     <tr>
         <td>房间</td>
         <td>状态是否为空</td>
+        <td>1代表房间为空，0代表房间不空</td>
     </tr>
     <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
             <td id="room"><?php echo ($v["room"]); ?></td>
             <td><?php echo ($v["empty"]); ?></td>
-            <td><button id="update">修改</button></td>
-            <td><button id="delete">删除</button></td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
 </table>
 

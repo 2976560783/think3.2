@@ -35,10 +35,28 @@ class IndexController extends Controller {
             $data['price'] = I('post.price');
             $table = M($table);
             $table->where('number='.$number)->save($data);
-            $data = $table->select();
-            $this->assign('data',$data);
-            $this->display(I('post.table'));
         }
+        if($table == 'admin'){
+            $user = I('post.user');
+            $data['password'] = I('post.password');
+            $table = M($table);
+            $table->where('user='.$user)->save($data);
+        }
+        if($table == 'user_info'){
+            $name = I('post.name');
+            $data['phone'] = I('post.phone');
+            $data['user_number'] = I('post.user_number');
+            $data['book_room'] = I('post.book_room');
+            $data['in_date'] = I('post.in_date');
+            $data['out_date'] = I('post.out_date');
+            $table = M($table);
+            echo $name."<br>";
+            print_r($data);
+            //$table->where('name='.$name)->save($data);
+        }
+        $data = $table->select();
+        $this->assign('data',$data);
+        $this->display(I('post.table'));
     }
 
     public function delete(){
@@ -53,11 +71,27 @@ class IndexController extends Controller {
     public function create(){
         echo 'create';
         $table = I('post.table');
-        $table = M($table);
-        $data['class'] = I('post.class');
-        $data['number'] = I('post.number');
-        $data['price'] = I('post.price');
-        $data['state'] = I('post.state');
+        if($table == 'room_set'){
+            $table = M($table);
+            $data['class'] = I('post.class');
+            $data['number'] = I('post.number');
+            $data['price'] = I('post.price');
+            $data['state'] = I('post.state');
+        }
+        if($table == 'admin'){
+            $table = M($table);
+            $data['user'] = I('post.user');
+            $data['password'] = I('post.password');
+        }
+        if($table == 'user_info'){
+            $table = M($table);
+            $data['name'] = I('post.name');
+            $data['phone'] = I('post.phone');
+            $data['user_number'] = I('post.user_number');
+            $data['book_room'] = I('post.book_room');
+            $data['in_date'] = I('post.in_date');
+            $data['out_date'] = I('post.out_date');
+        }
         $table->add($data);
         $list = $table->select();
         $this->assign('data',$list);
@@ -78,4 +112,11 @@ class IndexController extends Controller {
         $this->display('cost');
     }
 
+    public function change(){
+
+        $id = I('post.id');
+        $data['state'] = 0;
+        $user_info = M('user_info');
+        $user_info->where('id='.$id)->delete();
+    }
 }
